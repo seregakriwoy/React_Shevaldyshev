@@ -1,0 +1,154 @@
+.progress-header {
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  border: 1px solid #e9ecef;
+}
+
+.progress-header__stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 120px;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.stat-number.completed {
+  color: #28a745;
+}
+
+.stat-number.in-progress {
+  color: #ffc107;
+}
+
+.stat-number.not-started {
+  color: #6c757d;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.progress-header__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.progress-info h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.progress-message {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.progress-percentage {
+  font-size: 32px;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.progress-header__bar {
+  margin-bottom: 20px;
+}
+
+.progress-track {
+  height: 12px;
+  background: #e9ecef;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 6px;
+  position: relative;
+  transition: width 0.3s ease;
+}
+
+.progress-fill--not-started {
+  background: #6c757d;
+}
+
+.progress-fill--low {
+  background: #dc3545;
+}
+
+.progress-fill--medium {
+  background: #ffc107;
+}
+
+.progress-fill--high {
+  background: #007bff;
+}
+
+.progress-fill--completed {
+  background: #28a745;
+}
+
+.progress-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #6c757d;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.progress-tip {
+  padding: 12px;
+  background: #f1f3f5;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #495057;
+  border-left: 4px solid #6c757d;
+}
+
+.tip-not-started {
+  border-left-color: #ffc107;
+  background: #fff9e6;
+}
+
+.tip-in-progress {
+  border-left-color: #007bff;
+  background: #e8f4ff;
+}
+
+.tip-completed {
+  border-left-color: #28a745;
+  background: #e8f7ee;
+}
