@@ -28,6 +28,50 @@
   color: #61dafb;
 }
 
+.filter-buttons {
+  padding: 16px;
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-buttons h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.filter-buttons-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-button {
+  padding: 8px 16px;
+  border: 1px solid #e9ecef;
+  border-radius: 6px;
+  background: white;
+  color: #6c757d;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-button:hover {
+  background: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.filter-button--active {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
