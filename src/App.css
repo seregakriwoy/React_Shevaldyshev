@@ -2513,3 +2513,1123 @@ input:checked + .slider:before {
     font-size: 0.9rem;
     margin-top: 10px;
 }
+/* Добавить в App.css */
+.deadline-form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.deadline-form {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease;
+}
+
+.form-header {
+    padding: 30px 30px 20px;
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.form-header h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.form-description {
+    color: #666;
+    font-size: 1rem;
+}
+
+.form-section {
+    padding: 20px 30px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.form-section h3 {
+    margin-bottom: 20px;
+    color: #444;
+    font-size: 1.2rem;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #444;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-input.error {
+    border-color: #f44336;
+    background: #fff5f5;
+}
+
+.form-input.error:focus {
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.error-message {
+    color: #f44336;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.form-hint {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 8px;
+}
+
+/* Priority buttons */
+.priority-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.priority-btn {
+    flex: 1;
+    padding: 10px 15px;
+    border: 2px solid;
+    border-radius: 8px;
+    background: white;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.priority-btn:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+.priority-btn.selected {
+    color: white;
+}
+
+.priority-btn:hover:not(.selected) {
+    opacity: 0.8;
+}
+
+/* Checkbox */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
+    background: #667eea;
+    border-color: #667eea;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Plan summary */
+.plan-summary {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.summary-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.priority-badge {
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Form actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding: 20px 30px;
+}
+
+.form-footer {
+    padding: 15px 30px;
+    border-top: 1px solid #f5f5f5;
+    background: #f8f9fa;
+    border-radius: 0 0 20px 20px;
+}
+
+.form-note {
+    color: #666;
+    font-size: 0.85rem;
+    margin: 5px 0;
+}
+
+/* Accessibility focus styles */
+.form-input:focus-visible,
+.btn:focus-visible,
+.priority-btn:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .deadline-form {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .form-section {
+        padding: 15px 20px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .priority-buttons {
+        flex-direction: column;
+    }
+}
+/* Добавить в App.css */
+.bulk-editor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+}
+
+.bulk-editor {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.3s ease;
+}
+
+.editor-header {
+    padding: 30px 30px 20px;
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.editor-header h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.editor-description {
+    color: #666;
+    font-size: 1rem;
+}
+
+.selection-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.selection-count {
+    font-size: 1rem;
+    color: #333;
+}
+
+.selection-count strong {
+    color: #667eea;
+}
+
+.select-all-btn {
+    background: none;
+    border: 2px solid #667eea;
+    color: #667eea;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.select-all-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+.technologies-list-container {
+    padding: 20px 30px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.technologies-list {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table-header {
+    background: #f8f9fa;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 60px 2fr 1fr 1fr;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.table-row[aria-selected="true"] {
+    background: #f0f4ff;
+}
+
+.table-cell {
+    padding: 0 10px;
+}
+
+.checkbox-cell {
+    text-align: center;
+}
+
+.checkbox-cell input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.tech-label {
+    display: block;
+    cursor: pointer;
+}
+
+.tech-description {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.category-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #e3f2fd;
+    color: #1976d2;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-form {
+    padding: 20px 30px;
+    border-top: 2px solid #f5f5f5;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+.status-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.status-option {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid;
+    border-radius: 10px;
+    background: white;
+    color: #333;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.status-option:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+.status-option.selected {
+    color: white;
+}
+
+.status-option:hover:not(.selected) {
+    opacity: 0.8;
+}
+
+.preview-changes {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.preview-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.preview-item:last-child {
+    border-bottom: none;
+}
+
+.preview-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.preview-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.status-preview {
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Accessibility */
+.table-row:focus-within {
+    background: #f0f4ff;
+    outline: 2px solid #667eea;
+    outline-offset: -2px;
+}
+
+.checkbox-cell input[type="checkbox"]:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .bulk-editor {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .table-row {
+        grid-template-columns: 50px 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+    }
+    
+    .table-cell:nth-child(3),
+    .table-cell:nth-child(4) {
+        grid-column: 2;
+    }
+    
+    .status-options {
+        flex-direction: column;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+/* Добавить в App.css */
+.data-manager {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.data-manager h3 {
+    margin-bottom: 25px;
+    color: #333;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.error-message.alert {
+    background: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+}
+
+.success-message.alert {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #2e7d32;
+}
+
+.data-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.export-section, .import-section {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.export-section h4, .import-section h4 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.section-description {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.export-btn, .file-input-label .btn {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.action-hint {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 10px;
+}
+
+.import-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.import-buttons .btn {
+    flex: 1;
+}
+
+.file-input-label {
+    display: block;
+    cursor: pointer;
+}
+
+.file-input-label input[type="file"]:disabled + .btn {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.import-requirements {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.import-requirements h5 {
+    margin-bottom: 10px;
+    color: #444;
+    font-size: 0.95rem;
+}
+
+.import-requirements ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.import-requirements li {
+    margin-bottom: 5px;
+}
+
+.data-stats {
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.data-stats h5 {
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+/* Accessibility focus styles */
+.btn:focus-visible,
+.file-input-label:focus-visible .btn {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .data-actions {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .import-buttons {
+        flex-direction: column;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+/* Добавить в App.css */
+
+/* Заголовок приложения */
+.app-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.refresh-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.refresh-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Основной контент */
+.app-main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.search-section {
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.management-tools {
+    margin-bottom: 40px;
+}
+
+.tools-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.bulk-edit-btn, .deadline-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.bulk-edit-btn {
+    background: white;
+    border: 2px solid #667eea;
+    color: #667eea;
+}
+
+.bulk-edit-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+.deadline-btn {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+}
+
+.deadline-btn:hover {
+    background: linear-gradient(135deg, #43A047, #1B5E20);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+}
+
+/* Сетка контента */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.technologies-column, .resources-column {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.section-header h2 {
+    font-size: 1.6rem;
+    color: #333;
+    margin: 0;
+}
+
+.search-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-results {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.selected-tech {
+    background: #667eea;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+/* Состояние когда ничего не выбрано */
+.select-tech-hint {
+    text-align: center;
+    padding: 60px 40px;
+    color: #666;
+}
+
+.hint-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.select-tech-hint h4 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.select-tech-hint p {
+    margin-bottom: 25px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.hint-tips {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.hint-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.hint-tips ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #666;
+}
+
+.hint-tips li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Контейнер ресурсов */
+.resource-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.tech-details {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 10px;
+}
+
+.tech-details h4 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.status-completed {
+    color: #4CAF50;
+}
+
+.status-in-progress {
+    color: #FF9800;
+}
+
+.status-not-started {
+    color: #F44336;
+}
+
+/* Футер */
+.app-footer {
+    margin-top: 60px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.footer-content p {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.footer-hint {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* Пустое состояние */
+.empty-state {
+    text-align: center;
+    padding: 60px 40px;
+    color: #666;
+}
+
+.empty-state-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.empty-state h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.empty-state p {
+    margin-bottom: 25px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empty-state-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .app-header {
+        padding: 30px 20px;
+    }
+    
+    .app-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .search-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .tools-section {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .bulk-edit-btn, .deadline-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .selected-tech {
+        align-self: flex-start;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.technologies-column, .resources-column {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.technologies-column {
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.resources-column {
+    animation: slideInRight 0.5s ease;
+}
