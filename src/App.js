@@ -1,184 +1,134 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import useTechnologies from './hooks/useTechnologies';
+import ProgressBar from './components/ProgressBar';
+import TechnologyCard from './components/TechnologyCard';
+import QuickActions from './components/QuickActions';
 import './App.css';
-import TechnologyNotes from './components/TechnologyNotes';
 
 function App() {
-  const [technologies, setTechnologies] = useState([
-    {
-      id: 1,
-      title: 'React Components',
-      description: 'Изучение базовых компонентов',
-      status: 'not-started',
-      notes: ''
-    },
-    {
-      id: 2,
-      title: 'React Hooks',
-      description: 'useState, useEffect, useContext',
-      status: 'in-progress',
-      notes: ''
-    },
-    {
-      id: 3,
-      title: 'React Router',
-      description: 'Навигация в React приложениях',
-      status: 'completed',
-      notes: ''
-    },
-    {
-      id: 4,
-      title: 'Redux Toolkit',
-      description: 'Управление состоянием приложения',
-      status: 'not-started',
-      notes: ''
-    }
-  ]);
+    const { 
+        technologies, 
+        updateStatus, 
+        updateNotes, 
+        progress,
+        markAllAsCompleted,
+        resetAllStatuses,
+        exportData
+    } = useTechnologies();
 
-  const [searchQuery, setSearchQuery] = useState('');
-  const [filteredCount, setFilteredCount] = useState(technologies.length);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('all');
 
-  // Загружаем данные из localStorage при первом рендере
-  useEffect(() => {
-    const saved = localStorage.getItem('techTrackerData');
-    if (saved) {
-      try {
-        setTechnologies(JSON.parse(saved));
-        console.log('Данные загружены из localStorage');
-      } catch (error) {
-        console.error('Ошибка загрузки из localStorage:', error);
-      }
-    }
-  }, []);
+    // Фильтрация технологий
+    const filteredTechnologies = technologies.filter(tech => {
+        const matchesSearch = tech.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                            tech.description.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesCategory = selectedCategory === 'all' || tech.category === selectedCategory;
+        
+        return matchesSearch && matchesCategory;
+    });
 
-  // Сохраняем технологии в localStorage при любом изменении
-  useEffect(() => {
-    localStorage.setItem('techTrackerData', JSON.stringify(technologies));
-    console.log('Данные сохранены в localStorage');
-  }, [technologies]);
+    // Получение уникальных категорий
+    const categories = ['all', ...new Set(technologies.map(tech => tech.category))];
 
-  // Функция обновления заметок
-  const updateTechnologyNotes = (techId, newNotes) => {
-    setTechnologies(prevTech =>
-      prevTech.map(tech =>
-        tech.id === techId ? { ...tech, notes: newNotes } : tech
-      )
-    );
-  };
-
-  // Функция изменения статуса
-  const updateTechnologyStatus = (techId, newStatus) => {
-    setTechnologies(prevTech =>
-      prevTech.map(tech =>
-        tech.id === techId ? { ...tech, status: newStatus } : tech
-      )
-    );
-  };
-
-  // Фильтрация технологий по поисковому запросу
-  const filteredTechnologies = technologies.filter(tech => {
-    const query = searchQuery.toLowerCase();
     return (
-      tech.title.toLowerCase().includes(query) ||
-      tech.description.toLowerCase().includes(query)
+        <div className="app">
+            <header className="app-header">
+                <h1>Трекер изучения технологий</h1>
+                <p>Отслеживайте прогресс изучения технологий React и не только</p>
+                <ProgressBar
+                    progress={progress}
+                    label="Общий прогресс"
+                    color="#4CAF50"
+                    animated={true}
+                    height={20}
+                />
+            </header>
+
+            <main className="app-main">
+                <div className="controls-section">
+                    <QuickActions 
+                        onMarkAllCompleted={markAllAsCompleted}
+                        onResetAll={resetAllStatuses}
+                        onExportData={exportData}
+                        technologies={technologies}
+                    />
+
+                    <div className="filters-section">
+                        <div className="search-box">
+                            <input
+                                type="text"
+                                placeholder="Поиск технологий..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="search-input"
+                            />
+                            <span className="search-icon">🔍</span>
+                        </div>
+
+                        <div className="category-filters">
+                            <label>Категория:</label>
+                            <select 
+                                value={selectedCategory}
+                                onChange={(e) => setSelectedCategory(e.target.value)}
+                                className="category-select"
+                            >
+                                {categories.map(category => (
+                                    <option key={category} value={category}>
+                                        {category === 'all' ? 'Все категории' : category}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="results-info">
+                        <span className="results-count">
+                            Найдено: <strong>{filteredTechnologies.length}</strong> из {technologies.length}
+                        </span>
+                        <span className="progress-info">
+                            Прогресс: <strong>{progress}%</strong>
+                        </span>
+                    </div>
+                </div>
+
+                <div className="technologies-grid">
+                    {filteredTechnologies.map(tech => (
+                        <TechnologyCard
+                            key={tech.id}
+                            technology={tech}
+                            onStatusChange={updateStatus}
+                            onNotesChange={updateNotes}
+                        />
+                    ))}
+                </div>
+
+                {filteredTechnologies.length === 0 && (
+                    <div className="no-results">
+                        <p>По вашему запросу ничего не найдено</p>
+                        <button 
+                            className="clear-filters-btn"
+                            onClick={() => {
+                                setSearchQuery('');
+                                setSelectedCategory('all');
+                            }}
+                        >
+                            Сбросить фильтры
+                        </button>
+                    </div>
+                )}
+            </main>
+
+            <footer className="app-footer">
+                <div className="footer-content">
+                    <p>Трекер технологий • {technologies.length} технологий • Прогресс: {progress}%</p>
+                    <p className="footer-hint">
+                        Данные автоматически сохраняются в вашем браузере
+                    </p>
+                </div>
+            </footer>
+        </div>
     );
-  });
-
-  // Обновляем счетчик найденных результатов
-  useEffect(() => {
-    setFilteredCount(filteredTechnologies.length);
-  }, [filteredTechnologies]);
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'completed': return '#4caf50';
-      case 'in-progress': return '#ff9800';
-      case 'not-started': return '#f44336';
-      default: return '#757575';
-    }
-  };
-
-  const getStatusText = (status) => {
-    switch (status) {
-      case 'completed': return 'Завершено';
-      case 'in-progress': return 'В процессе';
-      case 'not-started': return 'Не начато';
-      default: return 'Неизвестно';
-    }
-  };
-
-  return (
-    <div className="app">
-      <header className="app-header">
-        <h1>Трекер технологий React</h1>
-        <p>Отслеживайте прогресс изучения технологий React</p>
-      </header>
-
-      <div className="search-section">
-        <input
-          type="text"
-          placeholder="Поиск по названию или описанию..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="search-input"
-        />
-        <div className="search-results">
-          Найдено технологий: <strong>{filteredCount}</strong>
-        </div>
-      </div>
-
-      <div className="technologies-grid">
-        {filteredTechnologies.map(tech => (
-          <div key={tech.id} className="technology-card">
-            <div className="card-header">
-              <h3>{tech.title}</h3>
-              <div className="status-badge" style={{ backgroundColor: getStatusColor(tech.status) }}>
-                {getStatusText(tech.status)}
-              </div>
-            </div>
-            
-            <p className="description">{tech.description}</p>
-            
-            <div className="status-controls">
-              <button 
-                onClick={() => updateTechnologyStatus(tech.id, 'not-started')}
-                className={`status-btn ${tech.status === 'not-started' ? 'active' : ''}`}
-              >
-                Не начато
-              </button>
-              <button 
-                onClick={() => updateTechnologyStatus(tech.id, 'in-progress')}
-                className={`status-btn ${tech.status === 'in-progress' ? 'active' : ''}`}
-              >
-                В процессе
-              </button>
-              <button 
-                onClick={() => updateTechnologyStatus(tech.id, 'completed')}
-                className={`status-btn ${tech.status === 'completed' ? 'active' : ''}`}
-              >
-                Завершено
-              </button>
-            </div>
-
-            <TechnologyNotes 
-              notes={tech.notes}
-              onNotesChange={updateTechnologyNotes}
-              techId={tech.id}
-            />
-          </div>
-        ))}
-      </div>
-
-      {filteredTechnologies.length === 0 && (
-        <div className="no-results">
-          <p>По запросу "{searchQuery}" ничего не найдено</p>
-        </div>
-      )}
-
-      <footer className="app-footer">
-        <p>Всего технологий: {technologies.length} | Сохранено в localStorage</p>
-      </footer>
-    </div>
-  );
 }
 
 export default App;
