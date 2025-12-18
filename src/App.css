@@ -1905,3 +1905,611 @@ input:checked + .slider:before {
         grid-template-columns: 1fr;
     }
 }
+/* Стили для API компонентов */
+
+/* Загрузка */
+.app-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-hint {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Ошибка */
+.app-error {
+    background: #ffebee;
+    border: 2px solid #f44336;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+}
+
+.app-error button {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.error-hint {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+/* Импортер дорожных карт */
+.roadmap-importer {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 30px;
+}
+
+.importer-description {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.import-status {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.import-status.loading {
+    background: #e3f2fd;
+    color: #1976d2;
+    border-left: 4px solid #1976d2;
+}
+
+.import-status.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #2e7d32;
+}
+
+.import-status.error {
+    background: #ffebee;
+    color: #c62828;
+    border-left: 4px solid #c62828;
+}
+
+.import-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.import-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.import-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.import-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.roadmap-options {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.roadmap-option {
+    background: white;
+    border: 2px solid #667eea;
+    color: #667eea;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    flex: 1;
+    min-width: 120px;
+}
+
+.roadmap-option:hover:not(:disabled) {
+    background: #667eea;
+    color: white;
+}
+
+.roadmap-option:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Поиск технологий */
+.technology-search {
+    margin-bottom: 30px;
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 20px;
+    padding-right: 50px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.clear-search {
+    position: absolute;
+    right: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clear-search:hover {
+    color: #333;
+}
+
+.search-spinner {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.search-spinner .spinner {
+    width: 20px;
+    height: 20px;
+    border-width: 2px;
+}
+
+.search-results {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.close-results {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.close-results:hover {
+    color: #333;
+}
+
+.results-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.search-result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.3s;
+}
+
+.search-result-item:hover {
+    background: #f8f9fa;
+}
+
+.result-content h4 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.result-content p {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.github-stats {
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.stars {
+    color: #ff9800;
+}
+
+.language {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.result-link {
+    background: #667eea;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.result-link:hover {
+    background: #5a67d8;
+    transform: translateY(-2px);
+}
+
+.no-results {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.search-on-github {
+    background: #24292e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-on-github:hover {
+    background: #0366d6;
+}
+
+/* Загрузчик ресурсов */
+.resource-loader {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.loader-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.reload-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #667eea;
+    transition: transform 0.3s;
+}
+
+.reload-button:hover {
+    transform: rotate(90deg);
+}
+
+.resource-error {
+    background: #ffebee;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #c62828;
+}
+
+.error-hint {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.resources-list {
+    display: grid;
+    gap: 15px;
+}
+
+.resource-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.resource-item:hover {
+    transform: translateX(5px);
+}
+
+.resource-type {
+    font-size: 1.5rem;
+}
+
+.resource-content {
+    flex: 1;
+}
+
+.resource-title {
+    font-weight: 600;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.resource-title:hover {
+    color: #667eea;
+    text-decoration: underline;
+}
+
+.resource-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
+}
+
+.resource-stars {
+    background: #fff3e0;
+    color: #f57c00;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    display: inline-block;
+}
+
+.loader-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.github-search-link {
+    color: #667eea;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.github-search-link:hover {
+    text-decoration: underline;
+}
+
+.select-tech-hint {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.hint-details {
+    margin-top: 20px;
+    color: #333;
+    font-weight: 500;
+}
+
+.hint-details ul {
+    text-align: left;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+/* Основной контент */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.technologies-column, .resources-column {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Список технологий */
+.technology-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.technology-item:hover {
+    background: #e3f2fd;
+    transform: translateY(-2px);
+}
+
+.technology-item.selected {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.tech-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.github-badge {
+    background: #24292e;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tech-meta {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.category {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.category-frontend {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.category-backend {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.category-language {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.difficulty {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.difficulty-beginner {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.difficulty-intermediate {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.difficulty-advanced {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.github-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.github-link {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.github-link:hover {
+    text-decoration: underline;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+/* Футер */
+.app-footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    margin-top: 40px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.footer-note {
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
